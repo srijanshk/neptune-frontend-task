@@ -1,15 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { Web3Provider } from '@ethersproject/providers'
+import { Web3ReactProvider } from "@web3-react/core";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import "./index.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
+
+function getLibrary(provider: any) {
+  return new Web3Provider(provider);
+}
+
 root.render(
   <React.StrictMode>
-    <App />
+    <Web3ReactProvider getLibrary={getLibrary}>
+      <App />
+    </Web3ReactProvider>
   </React.StrictMode>
 );
 
